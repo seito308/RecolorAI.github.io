@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RecolorAI | เติมสีภาพขาวดำด้วย AI</title>
+  <meta name="description" content="เว็บเติมสีภาพขาวดำด้วย AI โดยรันโมเดล ONNX ในเบราว์เซอร์" />
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' https://cdn.jsdelivr.net; connect-src 'self' https://cdn.glitch.me https://cdn.jsdelivr.net; img-src 'self' data: https://cdn.glitch.me; style-src 'self'; font-src 'none';" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">RecolorAI</p>
+        <h1>เติมสีภาพขาวดำด้วย AI</h1>
+        <p class="hero-description">อัปโหลดไฟล์ JPG / PNG แล้วให้ AI เติมสีให้ภาพของคุณทั้งบนเว็บไซต์และบนเครื่องของคุณเอง</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="card">
+        <div class="controls-row">
+          <label class="button file-button" for="imageInput">เลือกไฟล์รูปภาพ</label>
+          <input id="imageInput" type="file" accept="image/png,image/jpeg" />
+          <button id="downloadBtn" class="button secondary" disabled>ดาวน์โหลดผลลัพธ์</button>
+        </div>
+        <div class="hint">รองรับ PNG / JPG เท่านั้น (ไม่เกิน 5MB). รูปทั้งหมดประมวลผลในเครื่อง ไม่ส่งภาพขึ้นเซิร์ฟเวอร์.</div>
+
+        <div class="canvas-grid">
+          <div class="canvas-panel">
+            <h2>ต้นฉบับ</h2>
+            <div class="canvas-frame"><canvas id="originalCanvas" aria-label="ต้นฉบับ"></canvas></div>
+          </div>
+          <div class="canvas-panel">
+            <h2>ผลลัพธ์</h2>
+            <div class="canvas-frame"><canvas id="resultCanvas" aria-label="ผลลัพธ์"></canvas></div>
+          </div>
+        </div>
+
+        <p id="status" class="status">รอดาวน์โหลดโมเดล...</p>
+      </section>
+    </main>
+
+    <div id="loadingOverlay" class="loading-overlay" aria-hidden="true">
+      <div class="loading-box">
+        <div class="loader"></div>
+        <p id="loadingText">กำลังโหลดโมเดลและประมวลผลภาพ...</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>โฮสต์บน GitHub Pages ได้ง่าย โดยวางไฟล์ใน repository แล้วเปิดใช้งาน Pages จาก root directory.</p>
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

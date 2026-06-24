@@ -1,0 +1,13 @@
+{
+  "name": "recolorai",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Static browser-based colorization site using ONNX Runtime Web.",
+  "scripts": {
+    "start": "npx http-server . -c-1 -p 8080",
+    "deploy": "echo \"Deployment is handled by GitHub Actions.\""
+  },
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
